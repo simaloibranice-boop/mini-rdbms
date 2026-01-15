@@ -33,6 +33,19 @@ def run():
                 for r in rows:
                     print(r)
 
+            elif result[0] == "UPDATE":
+                _, table, where_col, where_val, updates = result
+                count = db.update(table, where_col, where_val, updates)
+                print(f"{count} row(s) updated")
+
+            elif result[0] == "DELETE":
+                _, table, where_col, where_val = result
+                count = db.delete(table, where_col, where_val)
+                print(f"{count} row(s) deleted")
+
+            else:
+                print("Unknown command")
+
         except Exception as e:
             print("Error:", e)
 
